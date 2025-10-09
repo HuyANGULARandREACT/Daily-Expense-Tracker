@@ -10,12 +10,11 @@ export interface IUser extends Document {
 }
 const userSchema = new Schema<IUser>(
   {
-    username: { type: String, required: true, unique: true },
+    username: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     phoneNumber: { type: Number, required: true, unique: true },
-    monthlyBudget: { type: Number,  unique: true },
+    monthlyBudget: { type: Number },
     password: { type: String, required: true },
-    createdAt: { type: Date, default: Date.now },
   },
   {
     timestamps: true,

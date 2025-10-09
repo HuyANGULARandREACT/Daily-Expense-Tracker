@@ -12,7 +12,6 @@ app.use(express.json());
 //routes
 apiRouter.use("/auth", router);
 app.use("/api/v1", apiRouter);
-
 //coonectDB
 connectDB();
 
