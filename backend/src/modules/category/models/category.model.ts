@@ -26,7 +26,7 @@ const categorySchema = new Schema<ICategory>(
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true,
+     
     },
   },
   {

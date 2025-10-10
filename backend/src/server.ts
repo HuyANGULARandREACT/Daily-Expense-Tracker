@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
 import connectDB from "./configs/db";
-import router from "./modules/users/routes/user.route";
-
+import authRoutes from "./modules/users/routes/user.route";
+import categoryRoutes from "./modules/category/routes/category.route"
 const app = express();
 const apiRouter = express.Router();
 
@@ -10,7 +10,8 @@ const apiRouter = express.Router();
 app.use(cors());
 app.use(express.json());
 //routes
-apiRouter.use("/auth", router);
+apiRouter.use("/auth", authRoutes);
+apiRouter.use("/category", categoryRoutes);
 app.use("/api/v1", apiRouter);
 //coonectDB
 connectDB();
