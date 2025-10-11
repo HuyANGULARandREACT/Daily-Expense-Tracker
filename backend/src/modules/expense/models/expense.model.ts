@@ -4,8 +4,9 @@ export interface IExpense {
   userId: mongoose.Types.ObjectId;
   categoryId: mongoose.Types.ObjectId;
   title: string;
+  expenseType: "income" | "outcome"; // thêm kiểu TypeScript rõ ràng
   amount: number;
-  note: string;
+  note?: string;
 }
 const expenseSchema = new Schema<IExpense>(
   {
@@ -18,6 +19,11 @@ const expenseSchema = new Schema<IExpense>(
       type: mongoose.Schema.Types.ObjectId,
       ref: "CategoryId",
       required: true,
+    },
+    expenseType: {
+      type: String,
+      required: true,
+      enum: ["income", "outcome"],
     },
     title: {
       type: String,

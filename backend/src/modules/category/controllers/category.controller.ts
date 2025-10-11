@@ -13,6 +13,7 @@ export const getCategoryById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const category = await categoryService.getCategoryById(id);
+    res.status(200).json(category)
   } catch (err) {
     res.status(500).json({ message: "Error creating category", err });
   }
