@@ -17,6 +17,7 @@ export const registerUser = async (
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(password, salt);
     user.monthlyBudget = 0;
+    user.balance = 0
     await user.save();
 
     const token = generateToken(user);
