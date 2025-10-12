@@ -140,8 +140,10 @@ const swaggerDefinition: SwaggerDefinition = {
 const options = {
   definition: swaggerDefinition,
   apis: [
-    "./src/modules/*/routes/*.route.ts",
-    "./src/modules/*/controllers/*.controller.ts",
+    "./src/modules/users/routes/*.ts",
+    "./src/modules/category/routes/*.ts",
+    "./src/modules/expense/routes/*.ts",
+    "./src/modules/stats/routes/*.ts",
   ],
 };
 

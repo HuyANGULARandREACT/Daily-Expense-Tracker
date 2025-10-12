@@ -3,9 +3,10 @@ import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import connectDB from "./configs/db";
 import swaggerSpec from "./configs/swagger";
-import authRoutes from "./modules/users/routes/user.route";
+import authRoutes from "./modules/auth/routes/auth.route";
 import categoryRoutes from "./modules/category/routes/category.route";
 import expenseRoutes from "./modules/expense/routes/expense.route";
+import userRoutes from "./modules/users/routes/user.route"
 const app = express();
 const apiRouter = express.Router();
 
@@ -18,6 +19,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 //routes
 apiRouter.use("/auth", authRoutes);
+apiRouter.use("/user", userRoutes);
 apiRouter.use("/expense", expenseRoutes);
 apiRouter.use("/category", categoryRoutes);
 app.use("/api/v1", apiRouter);
