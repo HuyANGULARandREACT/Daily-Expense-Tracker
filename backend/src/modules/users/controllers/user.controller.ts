@@ -2,7 +2,8 @@ import { Request, Response } from "express";
 import { User } from "../models/user.model";
 import bcrypt from "bcrypt";
 import generateToken from "../../../utils/generateToken";
-
+import * as userService from "../services/user.service";
+//----------------------------auth controller--------------------------------
 export const registerUser = async (
   req: Request,
   res: Response
@@ -17,7 +18,7 @@ export const registerUser = async (
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(password, salt);
     user.monthlyBudget = 0;
-    user.balance = 0
+    user.balance = 0;
     await user.save();
 
     const token = generateToken(user);
@@ -90,5 +91,35 @@ export const getUserById = async (
   } catch (err) {
     console.error(err);
     res.status(500).send("Server error");
+  }
+};
+export const getAllUser = async (req: Request, res: Response) => {
+  try {
+    const users = await userService.getAllUsers();
+    res.status(200).json(users);
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching users", err });
+  }
+};
+export const updateUser = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const user = await userService.updateUser(id, req.body);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(500).json({ message: "Error updating user", err });
+  }
+};
+export const deleteUser = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const user = await userService.deleteUser(id);
+    if (!user) return res.status(404).json({ message: "user not found" });
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(500).json({ message: "error deleting user", err });
   }
 };
