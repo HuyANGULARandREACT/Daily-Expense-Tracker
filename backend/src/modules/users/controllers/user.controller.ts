@@ -93,7 +93,7 @@ export const getUserById = async (
     res.status(500).send("Server error");
   }
 };
-export const getAllUser = async (req: Request, res: Response) => {
+export const getAllUsers = async (req: Request, res: Response) => {
   try {
     const users = await userService.getAllUsers();
     res.status(200).json(users);
