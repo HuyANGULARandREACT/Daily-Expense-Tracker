@@ -45,5 +45,4 @@ const expenseSchema = new Schema<IExpense>(
   }
 );
 export const Expense = mongoose.model<IExpense>("Expense", expenseSchema);
-//commit sth
-//=))))
+//abc
